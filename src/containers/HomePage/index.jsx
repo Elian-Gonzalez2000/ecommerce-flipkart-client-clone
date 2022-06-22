@@ -5,10 +5,10 @@ import MenuHeader from "../../components/MenuHeader";
 
 const HomePage = (props) => {
    return (
-      <Layout>
+      <>
          <Header />
          <MenuHeader />
-      </Layout>
+      </>
    );
 };
 
