@@ -49,6 +49,7 @@ function App() {
          <Router>
             <Routes>
                <Route path="/" exact element={<HomePage />} />
+               <Route path="/:slug" exact element={<ProductListPage />} />
             </Routes>
          </Router>
       </div>
