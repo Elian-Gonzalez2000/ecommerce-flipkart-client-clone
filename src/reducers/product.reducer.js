@@ -21,5 +21,8 @@ export default (state = initialState, action) => {
                ...action.payload.productsByPrice,
             },
          };
+         break;
    }
+
+   return { ...state };
 };
