@@ -4,7 +4,7 @@ import { categoryConstants } from "./constants.js";
 export const getAllCategory = () => {
    return async (dispatch) => {
       try {
-         dispatch({ type: categoryConstants });
+         dispatch({ type: categoryConstants.GET_ALL_CATEGORIES_REQUEST });
          const res = await axios.get("category/getcategory");
          console.log(res);
 
