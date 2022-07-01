@@ -16,7 +16,7 @@ const MenuHeader = (props) => {
       let myCategories = [];
       for (let category of categoryList) {
          myCategories.push(
-            <li key={category.name} style={{ textAlign: "left" }}>
+            <li key={category.name}>
                {category.parentId ? (
                   <Link to={category.slug}>{category.name}</Link>
                ) : (
