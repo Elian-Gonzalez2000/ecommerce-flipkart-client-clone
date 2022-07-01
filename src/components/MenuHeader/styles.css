@@ -36,6 +36,8 @@
    right: 0;
    display: none;
    border: 1px solid #cecece;
+   z-index: 1;
+   background-color: #fefefe;
 }
 
 .menu-header > ul > li:hover > ul{
@@ -45,7 +47,7 @@
 .menu-header > ul > li > ul > li{
    float: left;
    margin: 0 1.3rem;
-   min-height: 150px;
+   min-width: 150px;
 }
 
 .menu-header > ul > li > ul > li > a{
