@@ -2,7 +2,7 @@ import { productConstants } from "../actions/constants";
 
 const initialState = {
    products: [],
-   productsBySlug: {
+   productsByPrice: {
       under5k: [],
       under10k: [],
       under15k: [],
