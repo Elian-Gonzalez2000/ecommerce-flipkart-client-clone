@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getProductsBySlug } from "../../actions";
 import Layout from "../../components/Layout";
+import { genericPublicUrl } from "../../urlConfig";
 import "./styles.css";
 
 const ProductListPage = (props) => {
@@ -36,7 +37,12 @@ const ProductListPage = (props) => {
                         {product.productsByPrice[key].map((product) => (
                            <div className="product-container">
                               <div className="product-img-container">
-                                 <img src="" alt="" />
+                                 <img
+                                    src={genericPublicUrl(
+                                       product.productPictures[0].img
+                                    )}
+                                    alt={`${product.name} image`}
+                                 />
                               </div>
                               <div className="product-info">
                                  <div style={{ margin: "5px 0" }}>
@@ -46,7 +52,7 @@ const ProductListPage = (props) => {
                                     <span>4.3</span>&nbsp;
                                     <span>3353</span>
                                  </div>
-                                 <div className="productPrice">
+                                 <div className="product-price">
                                     {product.price}
                                  </div>
                               </div>
