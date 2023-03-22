@@ -18,7 +18,11 @@ const MenuHeader = (props) => {
          myCategories.push(
             <li key={category.name}>
                {category.parentId ? (
-                  <Link to={category.slug}>{category.name}</Link>
+                  <a
+                     href={`/${category.name}?cid=${category._id}&type=${category.type}`}
+                  >
+                     {category.name}
+                  </a>
                ) : (
                   <span>{category.name}</span>
                )}
