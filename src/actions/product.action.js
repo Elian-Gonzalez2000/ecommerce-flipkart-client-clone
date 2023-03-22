@@ -17,3 +17,18 @@ export const getProductsBySlug = (slug) => {
       }
    };
 };
+
+export const getProductPage = (payload) => {
+   return async (dispatch) => {
+      try {
+         console.log("paylaod", payload);
+         const { cid, type } = payload;
+         const res = await axios.post(`/products/${cid}/${type}`);
+         console.log(res);
+         if (res.status === 200) {
+         }
+      } catch (err) {
+         console.log(err);
+      }
+   };
+};
