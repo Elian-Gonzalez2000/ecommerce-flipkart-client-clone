@@ -23,12 +23,25 @@ export const getProductPage = (payload) => {
       try {
          console.log("paylaod", payload);
          const { cid, type } = payload;
-         const res = await axios.post(`/products/${cid}/${type}`);
+         const res = await axios.get(`/page/${cid}/${type}`);
          console.log(res);
+         dispatch({ type: productConstants.GET_PRODUCTS_PAGE_REQUEST });
          if (res.status === 200) {
+            const page = res.data;
+            dispatch({
+               type: productConstants.GET_PRODUCTS_PAGE_SUCCESS,
+               payload: { page },
+            });
          }
       } catch (err) {
-         console.log(err);
+         const { status, data } = err.response;
+         console.log(err.response);
+         if (status === 400) {
+            dispatch({
+               type: productConstants.GET_PRODUCTS_PAGE_FAILURE,
+               payload: { error: data },
+            });
+         }
       }
    };
 };
