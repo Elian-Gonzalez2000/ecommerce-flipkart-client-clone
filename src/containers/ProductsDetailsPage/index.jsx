@@ -75,8 +75,7 @@ function ProductsDetailsPage(props) {
                         icon={<IoMdCart />}
                         onClick={() => {
                            const { _id, name, price } = product;
-                           const img =
-                              product.productDetails.productPictures[0].img;
+                           const img = product.productPictures[0].img;
                            dispatch(addToCart({ _id, name, price, img }));
                         }}
                      />
