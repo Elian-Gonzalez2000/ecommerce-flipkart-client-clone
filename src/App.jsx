@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { isUserLoggedIn } from "./actions";
+import { isUserLoggedIn, updateToCart } from "./actions";
 import "./App.css";
 import HomePage from "./containers/HomePage";
 import ProductListPage from "./containers/ProductListPage";
@@ -62,6 +62,10 @@ function App() {
          dispatch(isUserLoggedIn());
       }
    }, [auth.authenticate]);
+
+   useEffect(() => {
+      dispatch(updateToCart());
+   }, []);
 
    return (
       <div className="App">
