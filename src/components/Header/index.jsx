@@ -186,7 +186,7 @@ const Header = (props) => {
                   ]}
                />
                <div>
-                  <a className="cart">
+                  <a className="cart" href="/cart">
                      <IoIosCart />
                      <span style={{ margin: "0 10px" }}>Cart</span>
                   </a>
