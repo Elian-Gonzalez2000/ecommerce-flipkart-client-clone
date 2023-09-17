@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../components/Layout";
 import { getAddress } from "../../actions";
 import { MaterialButton, MaterialInput } from "../../components/MaterialUI";
-/* import AddressForm from "./AddressForm"; */
+import AddressForm from "./AddressForm";
 import Card from "../../components/UI/Card";
 import "./style.css";
 
@@ -42,7 +42,7 @@ const CheckoutPage = (props) => {
                   <CheckoutStep
                      stepNumber={"1"}
                      title={"LOGIN"}
-                     active={false}
+                     active={!auth.authenticate}
                      body={
                         <div className="logged-in-id">
                            <span style={{ fontWeight: "500" }}>
@@ -56,18 +56,43 @@ const CheckoutPage = (props) => {
                   />
 
                   <CheckoutStep
-                     stepNumber={"1"}
-                     title={"LOGIN"}
-                     active={false}
+                     stepNumber={"2"}
+                     title={"DELIVERY ADDRESS"}
+                     active={true}
                      body={
-                        <div className="logged-in-id">
-                           <span style={{ fontWeight: "500" }}>Username</span>
-                           <span style={{ margin: "0 5px" }}>
-                              user@webscript.info
-                           </span>
-                        </div>
+                        <>
+                           {user.address.map((adr) => (
+                              <div className="flexRow address-container">
+                                 <div>
+                                    <input name="address" type="radio" />
+                                 </div>
+                                 <div className="flexRow sb address-info">
+                                    <div>
+                                       <div>
+                                          <span>{adr.name}</span>
+                                          <span>{adr.addressType}</span>
+                                          <span>{adr.mobileNumber}</span>
+                                       </div>
+                                       <div>{adr.address}</div>
+                                       <MaterialButton
+                                          title="DELIVERY HERE"
+                                          style={{ width: "250px" }}
+                                       />
+                                    </div>
+                                    <div>edit</div>
+                                 </div>
+                              </div>
+                           ))}
+                        </>
                      }
                   />
+
+                  {/* Address Form */}
+                  <AddressForm
+                     onSubmitForm={onAddressSubmit}
+                     onCancel={() => {}}
+                  />
+                  <CheckoutStep stepNumber={"3"} title={"ORDER SUMMARY"} />
                </div>
             </div>
          }
