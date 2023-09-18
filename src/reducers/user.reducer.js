@@ -18,7 +18,7 @@ export default (state = initState, action) => {
       case userConstants.GET_USER_ADDRESS_SUCCESS:
          state = {
             ...state,
-            address: actions.paylaod.address,
+            address: action.payload.address,
             loading: false,
          };
          break;
@@ -26,7 +26,7 @@ export default (state = initState, action) => {
       case userConstants.GET_USER_ADDRESS_FAILURE:
          state = {
             ...state,
-            error: action.paylaod.error,
+            error: action.payload.error,
             loading: false,
          };
          break;
