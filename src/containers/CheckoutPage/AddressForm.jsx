@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { addAddress } from "../../actions";
 import { MaterialButton, MaterialInput } from "../../components/MaterialUI";
 
 const AddressForm = (props) => {
+   const user = useSelector((state) => state.user);
    const [name, setName] = useState("");
    const [mobileNumber, setMobileNumber] = useState("");
    const [pinCode, setPinCode] = useState("");
@@ -14,6 +15,7 @@ const AddressForm = (props) => {
    const [landmark, setLandmark] = useState("");
    const [alternatePhone, setAlternatePhone] = useState("");
    const [addressType, setAddressType] = useState("");
+   const [submitFlag, setSubmitFlag] = useState(false);
    const dispatch = useDispatch();
 
    const inputContainer = {
@@ -38,22 +40,21 @@ const AddressForm = (props) => {
       };
       console.log(payload);
       dispatch(addAddress(payload));
+      setSubmitFlag(true);
    };
 
-   return (
-      <div className="checkout-step" style={{ background: "#f5faff" }}>
-         <div className={"checkout-header"}>
-            <div>
-               <span className="step-number">+</span>
-               <span className="step-title">{"ADD NEW ADDRESS"}</span>
-            </div>
-         </div>
-         <div
-            style={{
-               padding: "0 60px",
-               paddingBottom: "20px",
-            }}
-         >
+   useEffect(() => {
+      console.log("address count: ", user.address);
+      if (submitFlag) {
+         console.log("where we are ", user);
+         const address = user.address.slice(user.address.length - 1)[0];
+         props.onSubmitForm(address);
+      }
+   }, [user.address]);
+
+   const renderAddressForm = () => {
+      return (
+         <>
             <div className="flexRow">
                <div style={inputContainer}>
                   <MaterialInput
@@ -160,7 +161,28 @@ const AddressForm = (props) => {
                   }}
                />
             </div>
+         </>
+      );
+   };
+
+   if (props.withoutLayout) {
+      return <div>{renderAddressForm}</div>;
+   }
+
+   return (
+      <div className="checkout-step" style={{ background: "#f5faff" }}>
+         <div className={"checkout-header"}>
+            <div>
+               <span className="step-number">+</span>
+               <span className="step-title">{"ADD NEW ADDRESS"}</span>
+            </div>
          </div>
+         <div
+            style={{
+               padding: "0 60px",
+               paddingBottom: "20px",
+            }}
+         ></div>
       </div>
    );
 };
