@@ -61,28 +61,29 @@ const CheckoutPage = (props) => {
                      active={true}
                      body={
                         <>
-                           {user.address.map((adr) => (
-                              <div className="flexRow address-container">
-                                 <div>
-                                    <input name="address" type="radio" />
-                                 </div>
-                                 <div className="flexRow sb address-info">
+                           {user &&
+                              user.address.map((adr) => (
+                                 <div className="flexRow address-container">
                                     <div>
-                                       <div>
-                                          <span>{adr.name}</span>
-                                          <span>{adr.addressType}</span>
-                                          <span>{adr.mobileNumber}</span>
-                                       </div>
-                                       <div>{adr.address}</div>
-                                       <MaterialButton
-                                          title="DELIVERY HERE"
-                                          style={{ width: "250px" }}
-                                       />
+                                       <input name="address" type="radio" />
                                     </div>
-                                    <div>edit</div>
+                                    <div className="flexRow sb address-info">
+                                       <div>
+                                          <div>
+                                             <span>{adr.name}</span>
+                                             <span>{adr.addressType}</span>
+                                             <span>{adr.mobileNumber}</span>
+                                          </div>
+                                          <div>{adr.address}</div>
+                                          <MaterialButton
+                                             title="DELIVERY HERE"
+                                             style={{ width: "250px" }}
+                                          />
+                                       </div>
+                                       <div>edit</div>
+                                    </div>
                                  </div>
-                              </div>
-                           ))}
+                              ))}
                         </>
                      }
                   />
