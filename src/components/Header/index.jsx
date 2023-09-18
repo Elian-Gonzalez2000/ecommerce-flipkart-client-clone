@@ -168,11 +168,12 @@ const Header = (props) => {
             {/* End search Component */}
 
             {/* Right side menu */}
-            <div className="rightMenu">
+            <div className="rightMenu" style={{ zIndex: "999" }}>
                {auth.authenticate
                   ? renderLoggingInMenu()
                   : renderNotLoggedInMenu()}
                <DropdownMenu
+                  style={{}}
                   menu={
                      <a className="more">
                         <span>More</span>
