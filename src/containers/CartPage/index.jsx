@@ -6,6 +6,8 @@ import CartItem from "./CartItem";
 import { addToCart, getCartItems } from "../../actions";
 import { MaterialButton } from "../../components/MaterialUI";
 import { useNavigate } from "react-router-dom";
+import PriceDetails from "../../components/PriceDetails";
+import "./styles.css";
 
 function CartPage(props) {
    const cart = useSelector((state) => state.cart);
@@ -73,7 +75,22 @@ function CartPage(props) {
                   </div>
                </div>
             </Card>
-            <Card headerLeft="Price" style={{ width: "380px" }}></Card>
+            <PriceDetails
+               totalItem={Object.keys(cart.cartItems).reduce(function (
+                  qty,
+                  key
+               ) {
+                  return qty + cart.cartItems[key].quantity;
+               },
+               0)}
+               totalPrice={Object.keys(cart.cartItems).reduce(
+                  (totalPrice, key) => {
+                     const { price, quantity } = cart.cartItems[key];
+                     return totalPrice + price * quantity;
+                  },
+                  0
+               )}
+            />
          </div>
       </Layout>
    );
