@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import CartItem from "./CartItem";
 import { addToCart, getCartItems } from "../../actions";
 import { MaterialButton } from "../../components/MaterialUI";
+import { useNavigate } from "react-router-dom";
 
 function CartPage(props) {
    const cart = useSelector((state) => state.cart);
    const auth = useSelector((state) => state.auth);
    const dispatch = useDispatch();
+   const navigate = useNavigate();
    //const cartItems = cart.cartItems;
    const [cartItems, setCartItems] = useState(cart.cartItems);
 
@@ -41,16 +43,17 @@ function CartPage(props) {
                headerRight={<div>Delivered to</div>}
                style={{ width: "calc(100% - 400px)", overflow: "hidden" }}
             >
-               {Object.keys(cartItems).map((item, index) => {
-                  return (
-                     <CartItem
-                        key={index}
-                        cartItem={cartItems[item]}
-                        onQuantityInc={onQuantityIncrement}
-                        onQuantityDec={onQuantityDecrement}
-                     />
-                  );
-               })}
+               {cartItems &&
+                  Object.keys(cartItems).map((item, index) => {
+                     return (
+                        <CartItem
+                           key={index}
+                           cartItem={cartItems[item]}
+                           onQuantityInc={onQuantityIncrement}
+                           onQuantityDec={onQuantityDecrement}
+                        />
+                     );
+                  })}
 
                <div
                   style={{
@@ -65,7 +68,7 @@ function CartPage(props) {
                   <div style={{ width: "250px" }}>
                      <MaterialButton
                         title="PLACE ORDER"
-                        onClick={() => props.history.push("/checkout")}
+                        onClick={() => navigate("/checkout")}
                      />
                   </div>
                </div>
