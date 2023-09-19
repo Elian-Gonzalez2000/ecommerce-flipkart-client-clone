@@ -37,6 +37,24 @@ function CartPage(props) {
       dispatch(addToCart({ _id, name, price, img }, -1));
    };
 
+   if (props.onlyCartItems) {
+      return (
+         <>
+            {cartItems &&
+               Object.keys(cartItems).map((item, index) => {
+                  return (
+                     <CartItem
+                        key={index}
+                        cartItem={cartItems[item]}
+                        onQuantityInc={onQuantityIncrement}
+                        onQuantityDec={onQuantityDecrement}
+                     />
+                  );
+               })}
+         </>
+      );
+   }
+
    return (
       <Layout>
          <div className="cart-container">
