@@ -82,3 +82,28 @@ export const addOrder = (payload) => {
       }
    };
 };
+
+export const getOrders = () => {
+   return async (dispatch) => {
+      try {
+         const res = await axios.get(`/get-orders`, payload);
+         dispatch({ type: userConstants.GET_USER_ORDER_REQUEST });
+         const { orders } = res.data;
+         if (res.status === 201) {
+            console.log(res);
+            dispatch({
+               type: userConstants.GET_USER_ORDER_SUCCESS,
+               payload: { orders },
+            });
+         } else {
+            const { error } = res.data;
+            dispatch({
+               type: userConstants.GET_USER_ORDER_FAILURE,
+               payload: { error },
+            });
+         }
+      } catch (error) {
+         console.log(error);
+      }
+   };
+};
