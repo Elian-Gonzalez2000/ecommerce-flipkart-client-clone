@@ -2,7 +2,7 @@ import { userConstants } from "../actions/constants";
 
 const initState = {
    address: [],
-   order: [],
+   orders: [],
    error: null,
    loading: false,
    orderFeching: false,
