@@ -3,16 +3,16 @@ import "./style.css";
 
 function Card({ headerLeft, headerRight, ...props }) {
    return (
-      <div className="card" {...props}>
+      <article className={`card ${props.className}`} {...props}>
          {
             <div className="card-header">
-               {headerLeft && <div>{headerLeft}</div>}
+               {headerLeft && <div className="header-left">{headerLeft}</div>}
                {headerRight && headerRight}
             </div>
          }
 
          {props.children}
-      </div>
+      </article>
    );
 }
 
