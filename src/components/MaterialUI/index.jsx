@@ -77,17 +77,15 @@ const MaterialInput = (props) => {
    );
 };
 
-const MaterialButton = (props) => {
+const MaterialButton = ({ classNames, ...props }) => {
    const onClick = () => {
       props.onClick && props.onClick();
    };
 
-   let classNames = `${props.classNames}`;
-
    return (
       <div>
          <button
-            className={`${"materialButton"} ${classNames && classNames}`}
+            className={`${"material-button"} ${classNames ? classNames : ""}`}
             style={{
                backgroundColor: props?.bgColor,
                color: props?.textColor,
