@@ -18,9 +18,11 @@ function Card({
                   {cardIcon && cardIcon}
                   {priceRange && priceRange}
                </div>
+               {headerRight && (
+                  <div className="header-right">{headerRight}</div>
+               )}
             </div>
          )}
-         {headerRight && <div className="card-header">{headerRight}</div>}
 
          {props.children}
       </article>
