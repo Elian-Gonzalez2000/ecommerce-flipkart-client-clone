@@ -19,18 +19,21 @@ export default (state = initState, action) => {
             ...state,
             cartItems: action.payload.cartItems,
             updatingCart: false,
+            error: null,
          };
          break;
       case cartConstants.ADD_TO_CART_FAILURE:
          state = {
             ...state,
-            error: action.paylaod.error,
+            error: action.payload.error,
             updatingCart: false,
          };
          break;
       case cartConstants.RESET_CART:
          state = {
-            ...initState
+            cartItems: {},
+            updatingCart: false,
+            error: null,
          };
          break;
    }
