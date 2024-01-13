@@ -9,6 +9,25 @@
    font-weight: bolder;
 }
 
+.cart-container .cart-items-container {
+   width: calc(100% - 400px);
+   overflow: hidden;
+   justify-content: space-between;
+}
+
+.cart-container .place-order-container {
+   width: 100%;
+   display: flex;
+   background-color: var(--white-color);
+   justify-content: flex-end;
+   box-shadow: 0 0 10px 10px #eee;
+   padding: 0.6rem 0;
+}
+
+.cart-container .place-order-container:first-child {
+   width: 250px;
+}
+
 .cart-container .card {
    box-shadow: none;
 }

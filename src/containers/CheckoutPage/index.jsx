@@ -196,10 +196,14 @@ const CheckoutPage = () => {
       setAddress(address);
       //user.address.length === 0 && setNewAddress(true);
    }, [user.address]);
+   useEffect(() => {
+      if (confirmOrder && user.placedOrderId) navigate("/account/orders");
+   }, [user.orderFeching]);
 
    return (
       <Layout>
          {user.loading && <Loader />}
+         {user.orderFeching && <Loader />}
          {
             <div
                className="cart-container"

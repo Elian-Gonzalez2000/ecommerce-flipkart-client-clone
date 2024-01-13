@@ -61,61 +61,52 @@ function CartPage(props) {
    }
 
    return (
-      <Layout>
-         <div className="cart-container">
-            {cart.updatingCart && <Loader />}
-            <Card
-               headerLeft={`My Cart  (${Object.keys(cartItems).length})`}
-               headerRight={<div>Delivered to</div>}
-               style={{ width: "calc(100% - 400px)", overflow: "hidden" }}
-            >
-               {cartItems &&
-                  Object.keys(cartItems).map((item, index) => {
-                     return (
-                        <CartItem
-                           key={index}
-                           cartItem={cartItems[item]}
-                           onQuantityInc={onQuantityIncrement}
-                           onQuantityDec={onQuantityDecrement}
-                           onRemoveCartItem={onRemoveCartItem}
-                        />
-                     );
-                  })}
-
-               <div
-                  style={{
-                     width: "100%",
-                     display: "flex",
-                     background: "#ffffff",
-                     justifyContent: "flex-end",
-                     boxShadow: "0 0 10px 10px #eee",
-                     padding: "10px 0",
-                  }}
-               >
-                  <div style={{ width: "250px" }}>
-                     <MaterialButton
-                        title="PLACE ORDER"
-                        onClick={() => navigate("/checkout")}
+      <Layout className="cart-container">
+         {cart.updatingCart && <Loader />}
+         <Card
+            headerLeft={`My Cart  ${
+               cartItems ? "(" + Object.keys(cartItems).length + ")" : ""
+            }`}
+            headerRight={<div>Delivered to</div>}
+            classNames={"cart-items-container"}
+         >
+            {cartItems &&
+               Object.keys(cartItems).map((item, index) => {
+                  return (
+                     <CartItem
+                        key={index}
+                        cartItem={cartItems[item]}
+                        onQuantityInc={onQuantityIncrement}
+                        onQuantityDec={onQuantityDecrement}
+                        onRemoveCartItem={onRemoveCartItem}
                      />
-                  </div>
+                  );
+               })}
+
+            <div className="place-order-container">
+               <div style={{ width: "250px" }}>
+                  <MaterialButton
+                     title="PLACE ORDER"
+                     onClick={() => navigate("/checkout")}
+                  />
                </div>
-            </Card>
-            <PriceDetails
-               totalItem={
-                  cart.cartItems &&
-                  Object.keys(cart.cartItems).reduce(function (qty, key) {
-                     return qty + cart.cartItems[key].quantity;
-                  }, 0)
-               }
-               totalPrice={
-                  cart.cartItems &&
-                  Object.keys(cart.cartItems).reduce((totalPrice, key) => {
-                     const { price, quantity } = cart.cartItems[key];
-                     return totalPrice + price * quantity;
-                  }, 0)
-               }
-            />
-         </div>
+            </div>
+         </Card>
+         <PriceDetails
+            totalItem={
+               cart.cartItems &&
+               Object.keys(cart.cartItems).reduce(function (qty, key) {
+                  return qty + cart.cartItems[key].quantity;
+               }, 0)
+            }
+            totalPrice={
+               cart.cartItems &&
+               Object.keys(cart.cartItems).reduce((totalPrice, key) => {
+                  const { price, quantity } = cart.cartItems[key];
+                  return totalPrice + price * quantity;
+               }, 0)
+            }
+         />
       </Layout>
    );
 }

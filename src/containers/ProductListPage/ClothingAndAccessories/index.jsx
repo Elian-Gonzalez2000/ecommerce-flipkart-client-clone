@@ -19,7 +19,6 @@ const ClothingAndAccessories = (props) => {
    const slug = useLocation().pathname.substring(1);
 
    useEffect(() => {
-      const { match } = props;
       dispatch(getProductsBySlug(slug));
    }, [slug]);
    console.log(useLocation(), product, params);

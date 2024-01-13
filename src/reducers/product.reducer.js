@@ -19,6 +19,29 @@ const initialState = {
 
 export default (state = initialState, action) => {
    switch (action.type) {
+      case productConstants.GET_ALL_PRODUCTS_REQUEST:
+         state = {
+            ...state,
+            loading: true,
+         };
+         break;
+
+      case productConstants.GET_ALL_PRODUCTS_SUCCESS:
+         state = {
+            ...state,
+            loading: false,
+            products: action.payload.products,
+         };
+         break;
+
+      case productConstants.GET_ALL_PRODUCTS_FAILURE:
+         state = {
+            ...state,
+            loading: false,
+            error: action.payload.error,
+         };
+         break;
+
       case productConstants.GET_PRODUCTS_BY_SLUG_REQUEST:
          state = {
             ...state,

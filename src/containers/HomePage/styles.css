@@ -1,0 +1,31 @@
+.home-container .best-articles-container {
+   box-shadow: none;
+   border: none;
+   margin: 1.5rem auto;
+}
+
+.home-container .best-articles-container .card-header {
+   background-color: transparent;
+   border: none;
+}
+
+.home-container .best-mobile {
+   width: 200px;
+   border: 1px solid var(--gray-color);
+   border-radius: 5px;
+   text-align: center;
+   margin: 0 0.6rem 0.6rem 0.6rem;
+   padding: 0.3rem;
+}
+
+.home-container .best-mobile img {
+   margin: 0.5rem 0;
+   width: auto;
+   max-height: 160px;
+}
+
+.home-container .best-mobile p {
+   font-size: 0.8rem;
+   margin: 0;
+   color: var(--text-dark-color);
+}

@@ -15,9 +15,6 @@ function ProductPage(props) {
 
    useEffect(() => {
       const params = getParams(props.location.search);
-      const paylaod = {
-         params,
-      };
       dispatch(getProductPage(params));
    }, []);
 

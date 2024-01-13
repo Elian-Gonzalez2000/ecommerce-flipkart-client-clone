@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { genericPublicUrl } from "../../urlConfig";
 import { randomUI } from "../../helpers/randomUI";
-import { getOrders } from "../../actions";
+import { getCartItems, getOrders } from "../../actions";
 import { Breed } from "../../components/MaterialUI";
 import Layout from "../../components/Layout";
 import Card from "../../components/UI/Card";
@@ -16,12 +16,15 @@ const OrderPage = () => {
    const auth = useSelector((state) => state.auth);
    const navigate = useNavigate();
    const dispatch = useDispatch();
+
    useEffect(() => {
       if (!auth.authenticate) navigate("/");
    }, [auth.authenticate]);
+
    useEffect(() => {
       dispatch(getOrders());
    }, []);
+
    return (
       <Layout className={"order-page-container"}>
          <Breed

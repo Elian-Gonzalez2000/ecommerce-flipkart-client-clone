@@ -205,7 +205,11 @@ const Header = (props) => {
          <div className="subHeader">
             <div className="logo">
                <Link to="/">
-                  <img src={flipkartLogo} className="logoimage" alt="" />
+                  <img
+                     src={flipkartLogo}
+                     className="logo-image"
+                     alt="logo de Flipkart"
+                  />
                </Link>
                <Link style={{ marginTop: "-10px" }}>
                   <span className="exploreText">Explore</span>
