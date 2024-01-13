@@ -10,6 +10,7 @@ import CartPage from "./containers/CartPage";
 import CheckoutPage from "./containers/CheckoutPage";
 import OrderPage from "./containers/OrderPage";
 import OrderDetailsPage from "./containers/OrderDetailsPage";
+import Error404 from "./containers/Error404";
 
 function App() {
    const url = "http://localhost:3002/api/admin/signin";
@@ -75,11 +76,12 @@ function App() {
          <Router>
             <Routes>
                <Route path="/" exact element={<HomePage />} />
-               <Route path="/cart" element={<CartPage />} />
-               <Route path="/checkout" element={<CheckoutPage />} />
-               <Route path="/account/orders" element={<OrderPage />} />
+               <Route path="/cart" exact element={<CartPage />} />
+               <Route path="/checkout" exact element={<CheckoutPage />} />
+               <Route path="/account/orders" exact element={<OrderPage />} />
                <Route
                   path="/order-details/:orderId"
+                  exact
                   element={<OrderDetailsPage />}
                />
                <Route
@@ -88,6 +90,7 @@ function App() {
                   element={<ProductsDetailsPage />}
                />
                <Route path="/:slug" exact element={<ProductListPage />} />
+               <Route path="*" element={<Error404 />} />
             </Routes>
          </Router>
       </div>
